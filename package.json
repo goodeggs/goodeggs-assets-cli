@@ -40,9 +40,10 @@
     "watchify": "^3.2.1"
   },
   "devDependencies": {
-    "mocha": "~1.x.x",
     "chai": "~1.x.x",
-    "mocha-sinon": "~1.x.x"
+    "mocha": "~1.x.x",
+    "mocha-sinon": "~1.x.x",
+    "tmp": "0.0.25"
   },
   "scripts": {
     "compile": "coffee --bare --compile --output lib/ src/",

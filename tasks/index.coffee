@@ -1,5 +1,6 @@
 gulp = require 'gulp'
 
+require './init'
 require './browserify'
 require './exorcist'
 require './stylus'

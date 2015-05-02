@@ -5,5 +5,5 @@ var path = require('path');
 var kexec = require('kexec');
 var origCwd = process.cwd();
 
-kexec('gulp', ['--cwd', path.resolve(__dirname, '../tasks'), '--orig-cwd', origCwd].concat(process.argv.slice(2)));
+kexec(path.resolve(__dirname, '../node_modules/.bin/gulp'), ['--cwd', path.resolve(__dirname, '../tasks'), '--orig-cwd', origCwd].concat(process.argv.slice(2)));
 
