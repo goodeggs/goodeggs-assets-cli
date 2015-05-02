@@ -1,0 +1,34 @@
+{
+  "name": "goodeggs-assets-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for goodeggs-assets",
+  "author": "Good Eggs <open-source@goodeggs.com>",
+  "contributors": [
+    "Bob Zoller <bob@zoller.us>"
+  ],
+  "license": "Private",
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/goodeggs/goodeggs-assets-cli.git"
+  },
+  "homepage": "https://github.com/goodeggs/goodeggs-assets-cli",
+  "bugs": "https://github.com/goodeggs/goodeggs-assets-cli/issues",
+  "dependencies": {},
+  "devDependencies": {
+    "coffee-script": ">=1.8.x",
+    "mocha": "~1.x.x",
+    "chai": "~1.x.x",
+    "mocha-sinon": "~1.x.x"
+  },
+  "scripts": {
+    "compile": "coffee --bare --compile --output lib/ src/",
+    "prepublish": "npm run compile",
+    "pretest": "npm run compile",
+    "test": "mocha"
+  },
+  "publishConfig": {
+    "registry": "https://npm.goodeggs.com/",
+    "always-auth": true
+  }
+}
