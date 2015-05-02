@@ -17,6 +17,16 @@ $ goodeggs-assets        # => /public/build contains your development assets (un
 $ goodeggs-assets --prod # => /build contains your production (minified, versioned, no sourcemaps) assets and manifest
 ```
 
+You can also require `goodeggs-assets-cli/devtool` from your task runner to automatically start, stop and log the `goodeggs-assets` process. For example:
+
+```coffeescript
+gulp.task 'default', ->
+  assetsDevtool = require 'goodeggs-assets-cli/devtool'
+  nodemon = require 'gulp-nodemon'
+  assetsDevtool.run()
+  nodemon # snip...
+```
+
 ## Contributing
 
 ```
