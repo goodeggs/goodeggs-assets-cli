@@ -6,7 +6,7 @@
   "contributors": [
     "Bob Zoller <bob@zoller.us>"
   ],
-  "license": "Private",
+  "license": "MIT",
   "main": "lib/index.js",
   "repository": {
     "type": "git",
@@ -53,7 +53,6 @@
     "test": "mocha"
   },
   "publishConfig": {
-    "registry": "https://npm.goodeggs.com/",
-    "always-auth": true
+    "registry": "http://registry.npmjs.org"
   }
 }
