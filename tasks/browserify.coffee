@@ -3,10 +3,12 @@ gulp = require 'gulp'
 gulp.task 'browserify', (cb) ->
   path = require 'path'
   browserify = require 'browserify'
+  uglify = require 'gulp-uglify'
+  sourcemaps = require 'gulp-sourcemaps'
   watchify = require 'watchify'
   gutil = require 'gulp-util'
   source = require 'vinyl-source-stream'
-  rename = require 'gulp-rename'
+  buffer = require 'vinyl-buffer'
   insertGlobals = require 'insert-module-globals'
   addSrc = require 'gulp-add-src'
 
@@ -37,8 +39,7 @@ gulp.task 'browserify', (cb) ->
     args.extensions = ['.coffee', '.cjsx']
 
     b = browserify src, args
-    b.transform 'coffee-reactify', global: true, coffeeout: true
-    b.transform 'coffeeify', global: true
+    b.transform 'coffee-reactify', global: true
     b.transform ((file) -> insertGlobals(file.path, always: false)), global: true # detectGlobals
 
     opts.beforeBundle?(b)
@@ -55,22 +56,19 @@ gulp.task 'browserify', (cb) ->
 
     bundle = ->
       done = bundleLogger()
+      dest = "#{path.dirname(path.dirname(dest))}/#{path.basename(path.dirname(dest))}.js"
       b.bundle()
-        # Report compile errors
-        .on('error', gutil.log.bind(gutil))
         # Use vinyl-source-stream to make the
         # stream gulp compatible. Specify the
         # desired output filename here.
         .pipe(source(dest))
-        .pipe(addSrc.prepend(opts.prepend ? ''))
-        .pipe(addSrc.append(opts.append ? ''))
-        .pipe(rename((parts) ->
-          parts.basename = path.basename(parts.dirname)
-          parts.dirname = path.dirname(parts.dirname)
-          parts.extname = '.js'
-          parts
-        ))
-        # Specify the output destination
+        .pipe(buffer())
+        .pipe(sourcemaps.init(loadMaps: true))
+        .pipe(opts.prepend and addSrc.prepend(opts.prepend) or gutil.noop())
+        .pipe(opts.append and addSrc.append(opts.append) or gutil.noop())
+        .pipe(devMode and gutil.noop() or uglify())
+        .on('error', gutil.log)
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest(path.join(assetConfig.dest.dev, 'build/js')))
         .on('end', done)
         .on('end', initialCbGate)

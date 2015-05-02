@@ -10,7 +10,9 @@ CLI tool for goodeggs-assets
 ```bash
 $ npm install --save-dev goodeggs-assets-cli
 $ goodeggs-assets init   # => generates Assetsfile.coffee
-$ goodeggs-assets        # => your assets will be built and watched
+$ goodeggs-assets        # => /public/build contains your development assets (un-minified, un-versioned, inline sourcemaps)
+# code code code
+$ goodeggs-assets --prod # => /build contains your production (minified, versioned, no sourcemaps) assets and manifest
 ```
 
 ## Contributing
