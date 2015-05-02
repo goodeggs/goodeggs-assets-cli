@@ -7,14 +7,11 @@ CLI tool for goodeggs-assets
 
 ## Usage
 
+```bash
+$ npm install --save-dev goodeggs-assets-cli
+$ goodeggs-assets init   # => generates Assetsfile.coffee
+$ goodeggs-assets        # => your assets will be built and watched
 ```
-npm install goodeggs-assets-cli
-```
-
-```coffee
-goodeggsAssetsCli = require 'goodeggs-assets-cli'
-```
-
 
 ## Contributing
 
