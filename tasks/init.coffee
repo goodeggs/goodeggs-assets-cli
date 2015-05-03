@@ -1,8 +1,9 @@
 gulp = require 'gulp'
 
+fs = require 'fs'
+path = require 'path'
+
 gulp.task 'init', ->
-  fs = require 'fs'
-  path = require 'path'
 
   assetfilePath = path.join(process.cwd(), 'Assetfile.coffee')
 

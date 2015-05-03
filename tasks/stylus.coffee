@@ -1,14 +1,14 @@
 gulp = require 'gulp'
 
-{nib} = {} # persist across runs so we get caching
+path = require 'path'
+stylus = require 'gulp-stylus'
+sourcemaps = require 'gulp-sourcemaps'
+rename = require 'gulp-rename'
+gutil = require 'gulp-util'
+nib = require('nib')()
 
 gulp.task 'stylus', ->
-  path = require 'path'
-  stylus = require 'gulp-stylus'
-  sourcemaps = require 'gulp-sourcemaps'
-  rename = require 'gulp-rename'
-  gutil = require 'gulp-util'
-  nib ?= require('nib')()
+
   assetConfig = require path.join(process.cwd(), 'Assetfile')
 
   stylusStreamer = stylus

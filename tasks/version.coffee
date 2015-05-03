@@ -1,9 +1,11 @@
 gulp = require 'gulp'
 
+path = require 'path'
+rev = require 'gulp-rev'
+revReplace = require 'gulp-rev-replace'
+
 gulp.task 'version', ->
-  path = require 'path'
-  rev = require 'gulp-rev'
-  revReplace = require 'gulp-rev-replace'
+
   assetConfig = require path.join(process.cwd(), 'Assetfile')
 
   gulp.src([path.join(assetConfig.dest.dev, '**/*'), "!#{path.join(assetConfig.dest.dev, '**/*.map')}"]) # don't publish sourcemaps

@@ -21,6 +21,7 @@
     "browserify": "^10.0.0",
     "coffee-reactify": "^3.0.0",
     "coffee-script": "^1.9.2",
+    "coffeeify": "^1.1.0",
     "exorcist": "^0.3.0",
     "gulp": "^3.8.11",
     "gulp-add-src": "^0.2.0",
@@ -45,7 +46,8 @@
     "chai": "~1.x.x",
     "mocha": "~1.x.x",
     "mocha-sinon": "~1.x.x",
-    "tmp": "0.0.25"
+    "tmp": "0.0.25",
+    "to-ms": "^1.1.0"
   },
   "scripts": {
     "compile": "coffee --bare --compile --output lib/ src/",

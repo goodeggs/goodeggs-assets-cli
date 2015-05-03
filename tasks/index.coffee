@@ -1,14 +1,9 @@
 gulp = require 'gulp'
 
-require './init'
-require './browserify'
-require './exorcist'
-require './stylus'
-require './version'
+gutil = require 'gulp-util'
+runSequence = require 'run-sequence'
 
 gulp.task 'default', (done) ->
-  gutil = require 'gulp-util'
-  runSequence = require 'run-sequence'
 
   sequence = [
     ['browserify', 'stylus']
@@ -19,4 +14,10 @@ gulp.task 'default', (done) ->
     sequence.push 'version'
 
   runSequence sequence..., done
+
+require './init'
+require './browserify'
+require './exorcist'
+require './stylus'
+require './version'
 
