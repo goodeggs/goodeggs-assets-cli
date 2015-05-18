@@ -128,7 +128,7 @@ describe 'goodeggs-assets', ->
       describe 'version', ->
 
         before (done) ->
-          exec "#{binPath} --prod version", (err, stdout, stderr) ->
+          exec "#{binPath} version", (err, stdout, stderr) ->
             console.log stdout, stderr if err?
             done(err)
 
