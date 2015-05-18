@@ -34,6 +34,7 @@
     "gulp-util": "^3.0.4",
     "insert-module-globals": "^6.4.0",
     "kexec": "^1.2.0",
+    "lodash": "^3.8.0",
     "nib": "^1.1.0",
     "run-sequence": "^1.1.0",
     "through": "^2.3.7",
