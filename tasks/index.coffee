@@ -20,4 +20,5 @@ require './browserify'
 require './exorcist'
 require './stylus'
 require './version'
+require './rollbar'
 
