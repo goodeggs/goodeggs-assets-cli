@@ -12,14 +12,18 @@ gulp.task 'browserify', (cb) ->
   bundleQueue = 0
 
   browserifyEntrypoint = (entrypoint, externals=[]) ->
-    browserifyThis src: entrypoint.path, dest: entrypoint.relative,
+    src = entrypoint.path
+    dest = path.resolve path.join(assetConfig.dest.dev, 'build/js', path.dirname(path.dirname(entrypoint.relative)), "#{path.basename(path.dirname(src))}.js") # renames foo/index.coffee -> foo.js
+    browserifyThis {src, dest},
       prod: !devMode
       beforeBundle: (b) ->
         b.require(entrypoint.path, expose: path.dirname(entrypoint.relative))
         b.external(external) for external in externals
 
   browserifyExternal = (name, bundleConfig) ->
-    browserifyThis src: null, dest: "ext/#{name}/index.js",
+    src = null
+    dest = path.resolve path.join(assetConfig.dest.dev, 'build/js', "ext/#{name}.js")
+    browserifyThis {src, dest},
       prod: !devMode
       prepend: bundleConfig.prepend
       append: bundleConfig.append
@@ -33,11 +37,8 @@ gulp.task 'browserify', (cb) ->
       cb() if --bundleQueue is 0
 
     opts.browserifyArgs ?= {}
-    opts.browserifyArgs[k] = v for k, v of watchify.args if !devMode
+    opts.browserifyArgs[k] = v for k, v of watchify.args if devMode
   
-    dest = "#{path.dirname(path.dirname(dest))}/#{path.basename(path.dirname(dest))}.js" # renames foo/index.coffee -> foo.js
-    dest = path.join(assetConfig.dest.dev, 'build/js', dest)                             # set output directory
-
     b = browserifyBundle {src, dest}, opts
     bundle = ->
       startedAt = Date.now()
@@ -56,6 +57,8 @@ gulp.task 'browserify', (cb) ->
       # Wrap with watchify and rebundle on changes
       b = watchify(b)
       b.on 'update', bundle
+
+    return b # return the stream
 
   # first the externals
   externals = (browserifyExternal(name, config) for name, config of assetConfig.js.externals or {})

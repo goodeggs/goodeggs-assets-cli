@@ -79,7 +79,7 @@ describe 'goodeggs-assets', ->
           expect(fs.existsSync('./build/public/build/js/components/welcome.js')).to.be.false
 
         it 'has versioned javascript external files', ->
-          expect(fs.existsSync('./build/public/build/js/ext/thirdparty-32fe9f78.js')).to.be.true
+          expect(fs.existsSync('./build/public/build/js/ext/thirdparty-287b2a83.js')).to.be.true
 
         it 'has a manifest', ->
           expect(fs.existsSync('./build/rev-manifest.json')).to.be.true
