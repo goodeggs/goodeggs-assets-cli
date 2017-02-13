@@ -33,7 +33,7 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.4",
     "insert-module-globals": "^6.4.0",
-    "kexec": "^3.0.0",
+    "kexec": ">=0.2.0",
     "lodash": "^3.8.0",
     "nib": "^1.1.0",
     "request": "^2.55.0",
