@@ -49,6 +49,7 @@
     "chai": "~1.x.x",
     "mocha": "~1.x.x",
     "mocha-sinon": "~1.x.x",
+    "sinon": "^1.17.7",
     "tmp": "0.0.25",
     "to-ms": "^1.1.0"
   },
