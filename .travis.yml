@@ -1,17 +1,11 @@
 language: node_js
 node_js:
-  - '0.10'
+  - '8'
 cache:
   directories:
     - node_modules
 
-deploy:
-  provider: npm
-  email: open-source@goodeggs.com
-  api_key:
-    secure: "M12e+HftchVVqaY1BYF3v4tNl+yzLGiDpf6KeqFQBj0cf6zl+UEG/P6pRkfKiXLXtn7WChfccl3AWWQNEWRb8YnaMqtR5pL/ieq1KedxVWjTtOImTQgjiqsr9FTv2tN4wSU1WzqFurVMToQVMQ6ZFAcSBEgIP6RG55ZxvdJVO8c="
-  clean_up: false
-  on:
-    tags: true
-    all_branches: true
+env:
+  global:
+    - secure: "fSE8dNpa7Vnp6NfYF0w+0gQRx/Sgh9ZaqjslmfIlHumIz8VTBPo6RtZX0XCqjD7Pjuc2oFOnmZHQJfW8xAkssOgftMGkPfvASA+uAOyra5JTw7vBgt8PT4Lt6PmUbvY5HAwlgnxBGgX7Hg2yOaWQ3VCCc5N++RU7jguki/J3b3M=" # NPM_TOKEN
 
