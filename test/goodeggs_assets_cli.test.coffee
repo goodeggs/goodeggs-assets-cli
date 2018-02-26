@@ -14,8 +14,9 @@ describe 'goodeggs-assets', ->
   before (done) ->
     tmp.dir 'goodeggs-assets-cli', (err, dir) ->
       return done(err) if err?
+      console.log('working directory', dir)
       process.chdir dir
-      exec 'npm install coffee-script lodash', (err, stdout, stderr) ->
+      exec 'yarn add coffee-script lodash', (err, stdout, stderr) ->
         console.log stdout, stderr if err?
         done(err)
 
