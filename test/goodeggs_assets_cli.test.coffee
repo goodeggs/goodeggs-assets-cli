@@ -15,7 +15,7 @@ describe 'goodeggs-assets', ->
     tmp.dir 'goodeggs-assets-cli', (err, dir) ->
       return done(err) if err?
       process.chdir dir
-      exec 'npm install coffee-script@1.9.2 lodash@3.8.0', (err, stdout, stderr) ->
+      exec 'yarn add coffee-script@1.9.2 lodash@3.8.0', (err, stdout, stderr) ->
         console.log stdout, stderr if err?
         done(err)
 

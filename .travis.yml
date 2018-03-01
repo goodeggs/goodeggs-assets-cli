@@ -4,8 +4,5 @@ node_js:
 cache:
   directories:
     - node_modules
-
-env:
-  global:
-    - secure: "fSE8dNpa7Vnp6NfYF0w+0gQRx/Sgh9ZaqjslmfIlHumIz8VTBPo6RtZX0XCqjD7Pjuc2oFOnmZHQJfW8xAkssOgftMGkPfvASA+uAOyra5JTw7vBgt8PT4Lt6PmUbvY5HAwlgnxBGgX7Hg2yOaWQ3VCCc5N++RU7jguki/J3b3M=" # NPM_TOKEN
-
+install: yarn
+test: yarn test
