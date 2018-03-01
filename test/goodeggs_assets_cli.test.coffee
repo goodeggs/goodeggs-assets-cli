@@ -14,9 +14,8 @@ describe 'goodeggs-assets', ->
   before (done) ->
     tmp.dir 'goodeggs-assets-cli', (err, dir) ->
       return done(err) if err?
-      console.log('working directory', dir)
       process.chdir dir
-      exec 'yarn add coffee-script lodash', (err, stdout, stderr) ->
+      exec 'npm install coffee-script@1.9.2 lodash@3.8.0', (err, stdout, stderr) ->
         console.log stdout, stderr if err?
         done(err)
 
@@ -74,19 +73,23 @@ describe 'goodeggs-assets', ->
 
       describe '/build directory', ->
         it 'has versioned javascript endpoint files', ->
-          expect(fs.existsSync('./build/public/build/js/components/welcome-e4718656.js')).to.be.true
+          expect(fs.existsSync('./build/public/build/js/components/welcome-373e1652.js')).to.be.true
 
         it 'does not have unversioned javascript endpoint files', ->
           expect(fs.existsSync('./build/public/build/js/components/welcome.js')).to.be.false
 
         it 'has versioned javascript external files', ->
-          expect(fs.existsSync('./build/public/build/js/ext/thirdparty-c86b5f3b.js')).to.be.true
+          expect(fs.existsSync('./build/public/build/js/ext/thirdparty-32fe9f78.js')).to.be.true
 
         it 'has a manifest', ->
           expect(fs.existsSync('./build/rev-manifest.json')).to.be.true
 
         it 'javascript does not have inline sourcemaps', ->
-          expect(fs.readFileSync('./build/public/build/js/components/welcome-e4718656.js', 'utf8')).not.to.contain 'sourceMappingURL=data'
+          expect(fs.readFileSync('./build/public/build/js/components/welcome-373e1652.js', 'utf8')).not.to.contain 'sourceMappingURL=data'
+
+        it 'does not have external sourcemaps', ->
+          expect(fs.existsSync('./build/public/build/js/components/welcome.js.map')).to.be.false
+          expect(fs.existsSync('./build/public/build/js/components/welcome-373e1652.js.map')).to.be.false
 
         describe 'the manifest', ->
           {manifest} = {}
@@ -95,18 +98,27 @@ describe 'goodeggs-assets', ->
             manifest = JSON.parse(fs.readFileSync('./build/rev-manifest.json', 'utf8'))
 
           it 'is valid', ->
-            expect(manifest['build/js/components/welcome.js']).to.equal 'build/js/components/welcome-e4718656.js'
+            expect(manifest['build/js/components/welcome.js']).to.equal 'build/js/components/welcome-373e1652.js'
 
       describe '/public/build', ->
 
         it 'has javascript endpoint files', ->
           expect(fs.existsSync('./public/build/js/components/welcome.js')).to.be.true
 
+        it 'has javascript endpoint sourcemaps', ->
+          expect(fs.existsSync('./public/build/js/components/welcome.js.map')).to.be.true
+
         it 'has javascript external files', ->
           expect(fs.existsSync('./public/build/js/ext/thirdparty.js')).to.be.true
 
+        it 'has javascript external sourcemaps', ->
+          expect(fs.existsSync('./public/build/js/ext/thirdparty.js.map')).to.be.true
+
         it 'has css files', ->
           expect(fs.existsSync('./public/build/css/components/welcome.css')).to.be.true
+
+        it 'has css sourcemaps', ->
+          expect(fs.existsSync('./public/build/css/components/welcome.css.map')).to.be.true
 
     describe 'with hosts', ->
 
@@ -127,6 +139,6 @@ describe 'goodeggs-assets', ->
             manifest = JSON.parse(fs.readFileSync('./build/rev-manifest.json', 'utf8'))
 
           it 'distributes assets across hosts', ->
-            expect(manifest['build/js/components/welcome.js']).to.equal '//1.example.com/build/js/components/welcome-e4718656.js'
-            expect(manifest['build/css/components/welcome.css']).to.equal '//2.example.com/build/css/components/welcome-5ebd38e9.css'
+            expect(manifest['build/js/components/welcome.js']).to.equal '//1.example.com/build/js/components/welcome-373e1652.js'
+            expect(manifest['build/css/components/welcome.css']).to.equal '//2.example.com/build/css/components/welcome-f1468acf.css'
 
