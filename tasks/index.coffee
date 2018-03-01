@@ -1,7 +1,7 @@
 gulp = require 'gulp'
 
 gutil = require 'gulp-util'
-runSequence = require 'run-sequence'
+runSequence = require('run-sequence').use(gulp)
 
 gulp.task 'default', (done) ->
 
