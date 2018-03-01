@@ -16,8 +16,7 @@ _ = require 'lodash'
 module.exports = browserifyBundle = ({src, dest}, opts={}) ->
   assetConfig = require path.join(process.cwd(), 'Assetfile')
 
-  console.warn('WARNING: sourcemaps in goodeggs-assets-cli have been disabled because they broke.')
-  opts.sourcemaps = false
+  opts.sourcemaps ?= true
 
   args = _.defaults {}, opts.browserifyArgs,
     debug: opts.sourcemaps
